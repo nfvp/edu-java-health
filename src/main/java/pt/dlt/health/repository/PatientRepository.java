@@ -1,9 +1,14 @@
 package pt.dlt.health.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import pt.dlt.health.dto.Patient;
 
-public interface PatientRepository extends CrudRepository<Patient, Long> {
+@Repository
+public interface PatientRepository extends JpaRepository<Patient, Long> {
     
+    Optional<Patient> findById(Long id);
 
 }

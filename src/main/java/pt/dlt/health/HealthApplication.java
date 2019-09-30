@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import pt.dlt.health.dto.Appointment;
 import pt.dlt.health.dto.Doctor;
@@ -22,6 +24,17 @@ public class HealthApplication {
 		SpringApplication.run(HealthApplication.class, args);
 	}
 
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/*").allowedHeaders("*").allowedOrigins("*").allowedMethods("*")
+                        .allowCredentials(true);
+            }
+        };
+	}
+	
 	@Bean
 	public CommandLineRunner demo(DoctorRepository doctorRepository, PatientRepository patientRepository, AppointmentRepository appointmentRepository) {
 		return (args) -> {
@@ -61,4 +74,5 @@ public class HealthApplication {
 			}
 		};
 	}
+
 }
