@@ -1,6 +1,7 @@
 package pt.dlt.health.routing;
 
 import java.util.List;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,25 +16,32 @@ import pt.dlt.health.exception.NoAppointmentFoundException;
 @RestController
 public class AppointmentRL {
 
+    private Logger LOGGER = Logger.getLogger("Routing Layer");
+
     private @Autowired AppointmentBL appointmentBL;
+
 
     @GetMapping("/appointments")
     public List<Appointment> getListAppointment() {
+        LOGGER.info("getListAppointment");
         return appointmentBL.getListAppointment();
     }
 
     @PostMapping("/appointments")
     Appointment createAppointment(@RequestBody Appointment appointment) {
+        LOGGER.info("createAppointment");
         return appointmentBL.createAppointment(appointment);
     }
 
     @GetMapping("/appointments/{id}")
     Appointment getAppointment(@PathVariable Long id) throws NoAppointmentFoundException {
+        LOGGER.info("getAppointment");
         return appointmentBL.getAppointment(id);
     }
 
     @DeleteMapping("/appointments/{id}")
     void deleteAppointment(@PathVariable Long id) {
+        LOGGER.info("deleteAppointment");
         appointmentBL.deleteAppointment(id);
     }
 

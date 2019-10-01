@@ -1,6 +1,7 @@
 package pt.dlt.health.routing;
 
 import java.util.List;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,25 +16,32 @@ import pt.dlt.health.exception.NoDoctorFoundException;
 @RestController
 public class DoctorRL {
 
+    private Logger LOGGER = Logger.getLogger("Routing Layer");
+
     private @Autowired DoctorBL doctorBL;
 
+    
     @GetMapping("/doctors")
     public List<Doctor> getListDoctor() {
+        LOGGER.info("getListDoctor");
         return doctorBL.getListDoctor();
     }
 
     @PostMapping("/doctors")
     Doctor createDoctor(@RequestBody Doctor doctor) {
+        LOGGER.info("createDoctor");
         return doctorBL.createDoctor(doctor);
     }
 
     @GetMapping("/doctors/{id}")
     Doctor getDoctor(@PathVariable Long id) throws NoDoctorFoundException {
+        LOGGER.info("getDoctor");
         return doctorBL.getDoctor(id);
     }
 
     @DeleteMapping("/doctors/{id}")
     void deleteDoctor(@PathVariable Long id) {
+        LOGGER.info("deleteDoctor");
         doctorBL.deleteDoctor(id);
     }
 
