@@ -1,7 +1,6 @@
 package pt.dlt.health.dto;
 
 import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,7 +15,7 @@ public class Doctor extends Person {
     public Doctor() {
 
     }
-    
+
     public Doctor(String name, char gender, LocalDate birthdate, int citizenCard, int fiscalNmber, int phoneNumber, String address, Double wage, String speciality) {
         super(name, gender, birthdate, citizenCard, fiscalNmber, phoneNumber, address);
         this.wage = wage;

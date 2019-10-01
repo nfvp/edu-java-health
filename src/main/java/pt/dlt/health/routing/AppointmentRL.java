@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pt.dlt.health.bl.AppointmentBL;
 import pt.dlt.health.dto.Appointment;
+import pt.dlt.health.exception.NoAppointmentFoundException;
 
 @RestController
 public class AppointmentRL {
 
     private @Autowired AppointmentBL appointmentBL;
-    
+
     @GetMapping("/appointments")
     public List<Appointment> getListAppointment() {
         return appointmentBL.getListAppointment();
@@ -27,7 +28,7 @@ public class AppointmentRL {
     }
 
     @GetMapping("/appointments/{id}")
-    Appointment getAppointment(@PathVariable Long id) {
+    Appointment getAppointment(@PathVariable Long id) throws NoAppointmentFoundException {
         return appointmentBL.getAppointment(id);
     }
 

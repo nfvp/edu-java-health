@@ -2,7 +2,6 @@ package pt.dlt.health.dto;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,24 +12,32 @@ import javax.persistence.OneToOne;
 public class Appointment {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    @OneToOne(targetEntity=Patient.class)
+    @OneToOne(targetEntity = Patient.class)
     private Patient patient;
-    @OneToOne(targetEntity=Doctor.class)
+    @OneToOne(targetEntity = Doctor.class)
     private Doctor doctor;
 
     public Appointment() {
 
     }
-    
+
     public Appointment(LocalDateTime startDate, LocalDateTime endDate, Patient patient, Doctor doctor) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.patient = patient;
         this.doctor = doctor;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public LocalDateTime getStartDate() {
@@ -68,6 +75,5 @@ public class Appointment {
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
-
 
 }

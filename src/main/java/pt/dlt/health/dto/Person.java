@@ -1,7 +1,6 @@
 package pt.dlt.health.dto;
 
 import java.time.LocalDate;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,8 +10,8 @@ import javax.persistence.MappedSuperclass;
 public abstract class Person {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected long id;
     protected String name;
     protected char gender;
     protected LocalDate birthdate;
@@ -20,11 +19,11 @@ public abstract class Person {
     protected int fiscalNumber;
     protected int phoneNumber;
     protected String address;
-    
+
     public Person() {
 
     }
-    
+
     public Person(String name, char gender, LocalDate birthdate, int citizenCard, int fiscalNumber, int phoneNumber, String address) {
         this.name = name;
         this.gender = gender;
@@ -33,8 +32,16 @@ public abstract class Person {
         this.fiscalNumber = fiscalNumber;
         this.phoneNumber = phoneNumber;
         this.address = address;
-    } 
-    
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

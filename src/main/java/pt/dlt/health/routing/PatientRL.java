@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pt.dlt.health.bl.PatientBL;
 import pt.dlt.health.dto.Patient;
+import pt.dlt.health.exception.NoPatientFoundException;
 
 @RestController
 public class PatientRL {
 
     private @Autowired PatientBL patientBL;
-    
+
     @GetMapping("/patients")
     public List<Patient> getListPatient() {
         return patientBL.getListPatient();
@@ -27,7 +28,7 @@ public class PatientRL {
     }
 
     @GetMapping("/patients/{id}")
-    Patient getPatient(@PathVariable Long id) {
+    Patient getPatient(@PathVariable Long id) throws NoPatientFoundException {
         return patientBL.getPatient(id);
     }
 
