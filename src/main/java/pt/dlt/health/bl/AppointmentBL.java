@@ -24,7 +24,11 @@ public class AppointmentBL {
 		return appointmentDAL.getAppointment(id);
 	}
 
-	public void deleteAppointment(Long id) {
+	public Appointment updateAppointment(Appointment a) throws NoAppointmentFoundException {
+		return appointmentDAL.updateAppointment(a);
+	}
+
+	public void deleteAppointment(Long id) throws NoAppointmentFoundException {
         appointmentDAL.deleteAppointment(id);
 	}
 

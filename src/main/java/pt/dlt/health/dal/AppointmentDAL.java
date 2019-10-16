@@ -24,7 +24,8 @@ public class AppointmentDAL {
 
     @CustomLogger
     public Appointment createAppointment(Appointment appointment) {
-        return appointment;
+        Appointment newAppointment = appointmentRepository.save(appointment);
+        return newAppointment;
     }
 
     @CustomLogger
@@ -37,8 +38,27 @@ public class AppointmentDAL {
     }
 
     @CustomLogger
-    public void deleteAppointment(Long id) {
-        return;
+    public Appointment updateAppointment(Appointment appointment) throws NoAppointmentFoundException {
+        Optional<Appointment> response = appointmentRepository.findById(appointment.getId());
+        if (response.isEmpty()) {
+            throw new NoAppointmentFoundException();
+        }
+        Appointment dbAppointment = response.get();
+        dbAppointment.setDoctor(appointment.getDoctor());
+        dbAppointment.setPatient(appointment.getPatient());
+        dbAppointment.setStartDate(appointment.getStartDate());
+        dbAppointment.setEndDate(appointment.getEndDate());
+        appointmentRepository.save(dbAppointment);
+        return dbAppointment;
+    }
+
+    @CustomLogger
+    public void deleteAppointment(Long id) throws NoAppointmentFoundException {
+        Optional<Appointment> response = appointmentRepository.findById(id);
+        if (response.isEmpty()) {
+            throw new NoAppointmentFoundException();
+        }
+        appointmentRepository.delete(response.get());
     }
 
 }

@@ -13,8 +13,9 @@ public class Patient extends Person {
     public Patient() {
 
     }
-    
-    public Patient(String name, char gender, LocalDate birthdate, int citizenCard, int fiscalNumber, int phoneNumber, String address, long socialSecurityNumber, String insuranceNumber) {
+
+    public Patient(String name, char gender, LocalDate birthdate, int citizenCard, int fiscalNumber, int phoneNumber, String address, long socialSecurityNumber,
+            String insuranceNumber) {
         super(name, gender, birthdate, citizenCard, fiscalNumber, phoneNumber, address);
         this.setSocialSecurityNumber(socialSecurityNumber);
         this.setInsuranceNumber(insuranceNumber);
@@ -46,5 +47,5 @@ public class Patient extends Person {
     public void setInsuranceNumber(String insuranceNumber) {
         this.insuranceNumber = insuranceNumber;
     }
-    
+
 }

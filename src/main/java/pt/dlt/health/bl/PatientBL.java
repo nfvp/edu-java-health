@@ -24,7 +24,11 @@ public class PatientBL {
 		return patientDAL.getPatient(id);
 	}
 
-	public void deletePatient(Long id) {
+	public Patient updatePatient(Patient p) throws NoPatientFoundException {
+		return patientDAL.updatePatient(p);
+	}
+
+	public void deletePatient(Long id) throws NoPatientFoundException {
         patientDAL.deletePatient(id);
 	}
 	

@@ -24,7 +24,8 @@ public class PatientDAL {
 
     @CustomLogger
     public Patient createPatient(Patient patient) {
-        return patient;
+        Patient newPatient = patientRepository.save(patient);
+        return newPatient;
     }
 
     @CustomLogger
@@ -37,8 +38,30 @@ public class PatientDAL {
     }
 
     @CustomLogger
-    public void deletePatient(Long id) {
-        return;
+    public Patient updatePatient(Patient patient) throws NoPatientFoundException {
+        Optional<Patient> response = patientRepository.findById(patient.getId());
+        if (response.isEmpty()) {
+            throw new NoPatientFoundException();
+        }
+        Patient dbPatient = response.get();
+        dbPatient.setName(patient.getName());
+        dbPatient.setPhoneNumber(patient.getPhoneNumber());
+        dbPatient.setGender(patient.getGender());
+        dbPatient.setAddress(patient.getAddress());
+        dbPatient.setCitizenCard(patient.getCitizenCard());
+        dbPatient.setFiscalNumber(patient.getFiscalNumber());
+        dbPatient.setSocialSecurityNumber(patient.getSocialSecurityNumber());
+        patientRepository.save(dbPatient);
+        return dbPatient;
+    }
+
+    @CustomLogger
+    public void deletePatient(Long id) throws NoPatientFoundException {
+        Optional<Patient> response = patientRepository.findById(id);
+        if (response.isEmpty()) {
+            throw new NoPatientFoundException();
+        }
+        patientRepository.delete(response.get());
     }
 
 }

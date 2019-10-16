@@ -70,8 +70,16 @@ public abstract class Person {
         return citizenCard;
     }
 
+    public void setCitizenCard(int citizenCard) {
+        this.citizenCard = citizenCard;
+    }
+
     public int getFiscalNumber() {
         return fiscalNumber;
+    }
+
+    public void setFiscalNumber(int fiscalNumber) {
+        this.fiscalNumber = fiscalNumber;
     }
 
     public int getPhoneNumber() {

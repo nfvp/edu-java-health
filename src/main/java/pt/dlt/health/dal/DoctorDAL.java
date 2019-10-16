@@ -24,7 +24,8 @@ public class DoctorDAL {
 
     @CustomLogger
     public Doctor createDoctor(Doctor doctor) {
-        return doctor;
+        Doctor newDoctor = doctorRepository.save(doctor);
+        return newDoctor;
     }
 
     @CustomLogger
@@ -37,8 +38,29 @@ public class DoctorDAL {
     }
 
     @CustomLogger
-    public void deleteDoctor(Long id) {
-        return;
+    public Doctor updateDoctor(Doctor doctor) throws NoDoctorFoundException {
+        Optional<Doctor> response = doctorRepository.findById(doctor.getId());
+        if (response.isEmpty()) {
+            throw new NoDoctorFoundException();
+        }
+        Doctor dbDoctor = response.get();
+        dbDoctor.setName(doctor.getName());
+        dbDoctor.setPhoneNumber(doctor.getPhoneNumber());
+        dbDoctor.setGender(doctor.getGender());
+        dbDoctor.setAddress(doctor.getAddress());
+        dbDoctor.setWage(doctor.getWage());
+        dbDoctor.setSpeciality(doctor.getSpeciality());
+        doctorRepository.save(dbDoctor);
+        return dbDoctor;
+    }
+
+    @CustomLogger
+    public void deleteDoctor(Long id) throws NoDoctorFoundException {
+        Optional<Doctor> response = doctorRepository.findById(id);
+        if (response.isEmpty()) {
+            throw new NoDoctorFoundException();
+        }
+        doctorRepository.delete(response.get());
     }
 
 }
