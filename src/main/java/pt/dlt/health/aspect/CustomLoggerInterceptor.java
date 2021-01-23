@@ -10,9 +10,10 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class CustomLoggerInterceptor {
-
+    
     private Logger LOGGER = Logger.getLogger("Interceptor");
-
+    
+    
     @Around("@annotation(CustomLogger)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         LOGGER.info(joinPoint.getSignature().getName());

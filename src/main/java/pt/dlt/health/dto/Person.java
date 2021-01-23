@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Person {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
@@ -19,11 +19,10 @@ public abstract class Person {
     protected int fiscalNumber;
     protected int phoneNumber;
     protected String address;
-
-    public Person() {
-
-    }
-
+    
+    
+    public Person() {}
+    
     public Person(String name, char gender, LocalDate birthdate, int citizenCard, int fiscalNumber, int phoneNumber, String address) {
         this.name = name;
         this.gender = gender;
@@ -33,69 +32,69 @@ public abstract class Person {
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
-
+    
     public long getId() {
         return id;
     }
-
+    
     public void setId(long id) {
         this.id = id;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public char getGender() {
         return gender;
     }
-
+    
     public void setGender(char gender) {
         this.gender = gender;
     }
-
+    
     public LocalDate getBirthdate() {
         return birthdate;
     }
-
+    
     public int getAge() {
         return LocalDate.now().getYear() - birthdate.getYear();
     }
-
+    
     public int getCitizenCard() {
         return citizenCard;
     }
-
+    
     public void setCitizenCard(int citizenCard) {
         this.citizenCard = citizenCard;
     }
-
+    
     public int getFiscalNumber() {
         return fiscalNumber;
     }
-
+    
     public void setFiscalNumber(int fiscalNumber) {
         this.fiscalNumber = fiscalNumber;
     }
-
+    
     public int getPhoneNumber() {
         return phoneNumber;
     }
-
+    
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+    
     public String getAddress() {
         return address;
     }
-
+    
     public void setAddress(String address) {
         this.address = address;
     }
-
+    
 }

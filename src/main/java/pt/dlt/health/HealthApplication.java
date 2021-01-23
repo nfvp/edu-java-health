@@ -18,13 +18,13 @@ import pt.dlt.health.repository.PatientRepository;
 @SpringBootApplication
 public class HealthApplication extends SpringBootServletInitializer {
 	
+	public static void main(String[] args) {
+		SpringApplication.run(HealthApplication.class, args);
+	}
+	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(HealthApplication.class);
-	}
-	
-	public static void main(String[] args) {
-		SpringApplication.run(HealthApplication.class, args);
 	}
 	
 	@Bean
